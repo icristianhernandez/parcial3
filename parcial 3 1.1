@@ -1,0 +1,174 @@
+/*
+Interantes: Aron Pernia 32.070.898
+			Cristian Hernandez 28.481.734
+*/
+
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+struct{ //estado de las bombas
+	bool b1,b2,b3;
+}bomba;
+
+		string line; //variable para conocer la linea del dato
+    	string temp; //variable para conocer a que dato hace referencia
+    	bool v101,v102,v103,v201,v202,v203; //booleana de las valvulas
+    	char V101,V102,V103,V201,V202,V203; //ingreso desde el archivo de texto
+    	int Rotacion = 30; //rango de rotacion
+    	int presion1,presion2,presion3; //presion de cada bomba
+    	
+bool p101(bool v101,bool v201){ //bomba 1
+	
+	if(v101 == true and v201 == true and presion1 > 33){
+		presion1 --;
+	} else if(v101 == true and v201 == true and presion1 < 33){
+		presion1 ++;
+	} else if(v101 == true and v201 == true and presion1 == 33){
+		presion1 = presion1;
+	} else if(v101 == true and v201 == false){
+		presion1+=2;
+	}
+}
+
+bool p102(bool v102,bool v202){ //bomba 2
+	
+	if(v102 == true and v202 == true and presion2 > 33){
+		presion2 --;
+	} else if(v102 == true and v202 == true and presion2 < 33){
+		presion2 ++;
+	} else if(v102 == true and v202 == true and presion2 == 33){
+		presion2 = presion2;
+	} else if(v102 == true and v202 == false){
+		presion2+=2;
+	}
+}
+
+
+
+int main() {
+	
+	// 40 gal/min = 40.00/60.00 gal/seg
+	
+	while (true){
+    	ifstream file("datos.txt"); // Abre el archiVo
+
+    	while (getline(file, line)) { // Lee cada línea del archiVo
+        	istringstream ss(line);
+        	ss >> temp; // Ignora la parte no numérica
+        	if (temp == "V101:") {
+            	ss >> V101;
+            	if (V101 != '+' && V101 != '-' && V101 != '*') {
+                	cout << "Caracter inValido en V101: " << V101 << endl;
+            	}
+            	
+        	} else if (temp == "V102:") {
+            	ss >> V102;
+            	if (V102 != '+' && V102 != '-' && V102 != '*') {
+                	cout << "Caracter inValido en V102: " << V102 << endl;	
+            	}
+            	
+        	} else if (temp == "V103:") {
+            	ss >> V103;
+            	if (V103 != '+' && V103 != '-' && V103 != '*') {
+                	cout << "Caracter inValido en V103: " << V103 << endl;
+					
+            	}
+        	} else if (temp == "V201:") {
+            	ss >> V201;
+            	if (V201 != '+' && V201 != '-' && V201 != '*') {
+                	cout << "Caracter inValido en V201: " << V201 << endl;
+					
+            	}
+        	} else if (temp == "V202:") {
+            	ss >> V202;
+            	if (V202 != '+' && V202 != '-' && V202 != '*') {
+                	cout << "Caracter inValido en V202: " << V202 << endl;
+					
+            	}
+        	} else if (temp == "V203:") {
+            	ss >> V203;
+            	if (V203 != '+' && V203 != '-' && V203 != '*') {
+                	cout << "Caracter inValido en V203: " << V203 << endl;
+					
+            	}
+        	} else if (temp == "Rotacion:") {
+            	ss >> Rotacion;
+            	if (Rotacion <= 0) {
+                	cout << "Caracter inValido en Rotacion: " << Rotacion << endl;
+					
+            	}
+        	}
+    	}
+
+    file.close(); // No olVides cerrar el archiVo
+    
+   //	para confirmar que el sistema guarda los datos
+   /*
+    cout<< V101 <<endl;
+    cout<< V102 <<endl;
+    cout<< V103 <<endl;
+    cout<< V201 <<endl;
+    cout<< V202 <<endl;
+    cout<< V203 <<endl;
+    cout<< Rotacion <<endl;
+*/
+    
+    if (V101 == '+'){
+    	v101 = true;
+	}else{
+		v101 = false;
+	}
+	
+	if (V102 == '+'){
+    	v102 = true;
+	}else{
+		v102 = false;
+	}
+	
+	if (V103 == '+'){
+    	v103 = true;
+	}else{
+		v103 = false;
+	}
+	
+	if (V201 == '+'){
+    	v201 = true;
+	}else{
+		v201 = false;
+	}
+	
+	if (V202 == '+'){
+    	v202 = true;
+	}else{
+		v202 = false;
+	}
+	
+	if (V203 == '+'){
+    	v203 = true;
+	}else{
+		v203 = false;
+	}
+	
+	if(v101 != true or presion1 < 50){
+	p101(v101,v201);
+	
+	} else {
+		bomba.b1 = false;
+		presion1 -= 2;
+	}
+	
+
+    
+    Sleep(500);
+    system("cls");
+    
+    
+	}
+    return 0;
+}
+
