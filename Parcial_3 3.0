@@ -371,6 +371,6 @@ p103: +
 
 Desea llenar hasta una cantidad especifica?
 =: +
-cantidad: 400
+cantidad: 400 //la cantidad puede variar tanto como quiera
 
 */
