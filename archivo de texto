@@ -1,0 +1,24 @@
++: Encendido
+-: Apagado
+
+V101: +
+V102: +
+V103: +
+
+V201: +
+V202: +
+V203: +
+
+Rotacion: 30
+
+p101: +
+p102: +
+p103: +
+
+Desea llenar hasta una cantidad especifica?
+=: -
+cantidad: 500
+
+Desea visualizar el precio del material vendido?
+:= -
+Precio: 100
