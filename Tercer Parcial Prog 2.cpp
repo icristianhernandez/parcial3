@@ -3,7 +3,7 @@ Este programa simula el trabajo de 3 bombas que llevan etileno de una empresa a 
 
 Alumnos: Aron Pernia 32.070.898, Cristian Hernandez 28.481.734.
 
-Fecha: 23/11/2023
+Fecha: 12/12/2023
 
 cantidad de revisiones: 10
 */
